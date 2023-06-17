@@ -1,2 +1,2 @@
 # Numerial-Simulation
-Course on numerical simualtion of differential equations
+Course on numerical simualtion of differential equations using Julia
