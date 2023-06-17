@@ -1,0 +1,41 @@
+### A Pluto.jl notebook ###
+# v0.19.22
+
+using Markdown
+using InteractiveUtils
+
+# ╔═╡ d6d8bf90-c35c-11ed-0d52-7d15b900ed35
+md""" # Errores:"""
+
+# ╔═╡ 106b9c88-532e-4a2b-8284-d9f80e840451
+function order(sol1,sol2,sol3)
+	e1 = sol1 - sol2[1:2:length(sol2)];
+	e2 = sol2[1:2:length(sol2)] -  sol3[1:4:length(sol3)];
+	norma1 = norm(e1);
+	norma2 = norm(e2);
+	p = log2(norma1/norma2)
+	return p
+end
+
+# ╔═╡ 793ae153-fdfc-45f8-aa3e-73a646396bd0
+function real(exacta,n)	
+	h = 1/(n+1)
+	x = 0:h:1
+	y = 0:h:1
+	real = ones(n+2,n+2)
+	for i = 1:n+2
+		for j = 1:n+2
+			real[i,j] =	exacta(x[j],y[i])				
+		end
+	end
+	return real
+end
+
+# ╔═╡ 7da5c6fb-7b7c-4e37-8810-5243e07eb89c
+error = maximum(abs.(u1-real(solex,19)))
+
+# ╔═╡ Cell order:
+# ╠═d6d8bf90-c35c-11ed-0d52-7d15b900ed35
+# ╠═106b9c88-532e-4a2b-8284-d9f80e840451
+# ╠═793ae153-fdfc-45f8-aa3e-73a646396bd0
+# ╠═7da5c6fb-7b7c-4e37-8810-5243e07eb89c
